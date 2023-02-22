@@ -66,8 +66,10 @@ function convertToArray(expression) {
     let elements = [];
     let temp = "";
     for (let i = 0; i < expression.length; i++) {
-      
-      if (expression[i] == "+" || expression[i] == "-" || expression[i] == "*" || expression[i] == "/") {
+      if (i == 0 && (expression[i] == "+" || expression[i] == "-")) {
+        temp += expression[i];
+      }
+      else if (expression[i] == "+" || expression[i] == "-" || expression[i] == "*" || expression[i] == "/") {
         elements.push(temp);
         elements.push(expression[i]);
         temp = "";
