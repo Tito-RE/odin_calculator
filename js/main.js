@@ -49,6 +49,7 @@ function operate(operator,a,b) {
   return result;
 }
 
+//Get the number of operators (+,-,*,/) in a given expression
 function getQuantityOperators(expression) {
   let quantityOperator = 0;
   for (let i = 0; i < expression.length; i++) {
@@ -59,6 +60,8 @@ function getQuantityOperators(expression) {
   return quantityOperator;
 }
 
+//Convert a given expression to an array with the logic
+//separation of quantities and symbols
 function convertToArray(expression) {
     let elements = [];
     let temp = "";
@@ -80,6 +83,7 @@ function convertToArray(expression) {
     return elements;
 }
 
+//Process the expression from left to right
 function resolve(expression) {
   let quantityOperator = getQuantityOperators(expression);
   //console.log("Quantity Operator:" + quantityOperator);
