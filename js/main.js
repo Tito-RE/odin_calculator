@@ -65,33 +65,37 @@ function getQuantityOperators(expression) {
 function convertToArray(expression) {
     let elements = [];
     let temp = "";
-    for (let i = 0; i < expression.length; i++) {
-      if (i == 0 && (expression[i] == "+" || expression[i] == "-")) {
+    for (let i = expression.length-1; i >=0; i--) {
         temp += expression[i];
+        if (expression[i] == "+" || expression[i] == "-" || expression[i] == "*" || expression[i] == "/") {
+          if (expression[i] == "+" || expression[i] == "-") {
+            elements.push(temp.split('').reverse().join(''));
+          } else {
+            temp = temp.substring(0, temp.length-1)
+            elements.push(temp.split('').reverse().join(''));
+            elements.push(expression[i]);            
+          }
+          temp = "";
+          if (expression[i] == "+" || expression[i] == "-" && i!=0) {
+            elements.push("+");
+          }
+        }
+        if (i==0 && (expression[i] != "+" || expression[i] != "-") && temp != "") {
+          elements.push(temp.split('').reverse().join(''));
+          temp = "";
+        }
       }
-      else if (expression[i] == "+" || expression[i] == "-" || expression[i] == "*" || expression[i] == "/") {
-        elements.push(temp);
-        elements.push(expression[i]);
-        temp = "";
-      } else {
-        temp += expression[i];
-      }
-      if (i == expression.length-1) { 
-        elements.push(temp);
-      }
-      
-    }
     
-    return elements;
+    return elements.reverse();
 }
 
 //Process the expression from left to right
 function resolve(expression) {
   let quantityOperator = getQuantityOperators(expression);
-  //console.log("Quantity Operator:" + quantityOperator);
+  console.log("Quantity Operator:" + quantityOperator);
 
   expression = convertToArray(expression);
-  //console.log(expression);
+  console.log(expression);
 
   for (let i = 0; i < quantityOperator; i++) {
     //console.log("Inside i for: "+i);
