@@ -1,0 +1,21 @@
+.row {
+  display: flex;
+}
+
+.item {
+  background: rgb(0, 0, 0);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.156);
+  flex: 1;
+  padding: 4px;
+  text-align: center;
+  font-size: x-large;
+}
+
+#display {
+  background: rgb(0, 0, 0);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.156);
+  padding: 4px;
+  font-size: x-large;
+}
