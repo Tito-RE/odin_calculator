@@ -1,4 +1,5 @@
 const DIGITS_TO_ROUND = 7;
+let actualExpression = "";
 
 function add(a,b) {
   return a+b;    
@@ -110,6 +111,44 @@ function resolve(expression) {
       } 
     }
   }
-  
+  actualExpression = "";
+  actualExpression = expression;
   console.log(expression);
+  clearDisplay();
+  displayValue(expression[0]);
 }
+
+//Show values in the display
+function displayValue(value) {
+  let display = document.getElementById("display");
+  display.textContent = value;
+}
+
+//Aggregate value to the expression
+function pushValue(value) {
+  if (value != "=") {
+    actualExpression += value;
+    displayValue(actualExpression);
+  } else {
+    resolve(actualExpression);
+  }
+}
+
+function clearDisplay() {
+  let display = document.getElementById("display");
+  display.textContent = "";
+  actualExpression = "";
+}
+
+const buttons = document.querySelectorAll('button');
+buttons.forEach((button) => {
+  if (button.id != "clear") {
+    button.addEventListener('click', () => {
+        pushValue(button.value);
+      });
+  } else {
+    button.addEventListener('click', () => {clearDisplay()});
+  }
+});
+
+displayValue(actualExpression);
