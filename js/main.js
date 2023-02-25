@@ -86,13 +86,32 @@ function convertToArray(expression) {
     return elements;
 }
 
+//Validate the correct syntax's of a expression
+function validateExpression(expression) {
+  //Check for floats with extra dots
+  for (let i = 0; i < expression.length-1; i++) {
+    let dotQuantity = (expression[i].match(/\./g)||[]).length;
+    if (dotQuantity > 1) {
+      return false;
+    }
+  } 
+
+  return true;
+}
+
 //Process the expression from left to right
 function resolve(expression) {
   let quantityOperator = getQuantityOperators(expression);
-  //console.log("Quantity Operator:" + quantityOperator);
+  console.log("Quantity Operator:" + quantityOperator);
 
   expression = convertToArray(expression);
-  //console.log(expression);
+  console.log(expression);
+
+  if (!validateExpression(expression)) {
+    clearDisplay();
+    displayValue("Malformed expression");
+    return 0;
+  }
 
   for (let i = 0; i < quantityOperator; i++) {
     //console.log("Inside i for: "+i);
