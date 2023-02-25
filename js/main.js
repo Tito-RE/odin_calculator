@@ -96,6 +96,13 @@ function validateExpression(expression) {
     }
   } 
 
+  //Check for empty elements
+  for (let i = 0; i < expression.length-1; i++) {
+    if (expression[i] == "") {
+      return false;
+    }    
+  }
+
   return true;
 }
 
