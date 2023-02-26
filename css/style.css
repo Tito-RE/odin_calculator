@@ -2,22 +2,21 @@ body {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
+div, button {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: x-large;
+}
+
 .row {
   display: flex;
 }
 
-.item,
-.equal {
-  border: 2px solid rgba(255, 255, 255, 0.156);
-  color: rgba(255, 255, 255, 0.7);
-  flex: 1;
-  font-size: x-large;
-  padding: 4px;
-  text-align: center;
-}
-
 .item {
   background: rgba(0, 0, 0, 0.6);
+  border: 2px solid rgba(255, 255, 255, 0.156);
+  flex: 1;
+  padding: 4px;
+  text-align: center;
 }
 
 .delete {
@@ -30,9 +29,7 @@ body {
   
 #display {
   background: rgba(0, 0, 0, 0.8);
-  color: rgba(255, 255, 255, 0.7);
   border: 2px solid rgba(255, 255, 255, 0.156);
   padding: 4px;
-  font-size: x-large;
   height: 33px;
 }
