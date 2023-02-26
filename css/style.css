@@ -1,3 +1,7 @@
+body {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
 .row {
   display: flex;
 }
@@ -5,7 +9,7 @@
 .item,
 .equal {
   border: 2px solid rgba(255, 255, 255, 0.156);
-  color: white;
+  color: rgba(255, 255, 255, 0.7);
   flex: 1;
   font-size: x-large;
   padding: 4px;
@@ -13,7 +17,7 @@
 }
 
 .item {
-  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.6);
 }
 
 .delete {
@@ -25,9 +29,10 @@
 }
   
 #display {
-  background: rgb(0, 0, 0);
-  color: white;
+  background: rgba(0, 0, 0, 0.8);
+  color: rgba(255, 255, 255, 0.7);
   border: 2px solid rgba(255, 255, 255, 0.156);
   padding: 4px;
   font-size: x-large;
+  height: 33px;
 }
