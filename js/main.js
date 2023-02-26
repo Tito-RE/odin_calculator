@@ -1,19 +1,23 @@
 const DIGITS_TO_ROUND = 7;
 let actualExpression = "";
 
+//Do the add function 
 function add(a,b) {
   return a+b;    
 }
 
+//Do the subtract function
 function subtract(a,b) {
   return a-b;
 }
 
+//Do the multiply function
 function multiply(a,b) {
   let result = a*b;
   return round(result);
 }
 
+//Do the divide function
 function divide(a,b) {
   if (b === 0) {
     return "Error, Division by cero is undefined";
@@ -23,11 +27,13 @@ function divide(a,b) {
   }
 }
 
+//Round a flat number to a certain digits
 function round(a) {
   let digits = Math.pow(10, DIGITS_TO_ROUND);
   return Math.round( ( a + Number.EPSILON ) * digits ) / digits;
 }
 
+//Do a function based on a operator
 function operate(operator,a,b) {
   let result;
   switch (operator) {
@@ -80,9 +86,7 @@ function convertToArray(expression) {
       if (i == expression.length-1) { 
         elements.push(temp);
       }
-      
     }
-    
     return elements;
 }
 
@@ -109,10 +113,7 @@ function validateExpression(expression) {
 //Process the expression from left to right
 function resolve(expression) {
   let quantityOperator = getQuantityOperators(expression);
-  console.log("Quantity Operator:" + quantityOperator);
-
   expression = convertToArray(expression);
-  console.log(expression);
 
   if (!validateExpression(expression)) {
     clearDisplay();
@@ -121,18 +122,11 @@ function resolve(expression) {
   }
 
   for (let i = 0; i < quantityOperator; i++) {
-    //console.log("Inside i for: "+i);
     for (let j = 0; j < expression.length; j++) {
-      //console.log("Inside j for: "+j);
       if (j != 0 && (expression[j] == "+" || expression[j] == "-" || expression[j] == "*" || expression[j] == "/")) {
-        //console.log("Inside if");
-        //console.log(expression[j]+" "+ expression[j-1]+" "+expression[j+1]);
         let result = operate(expression[j],parseFloat(expression[j-1]),parseFloat(expression[j+1]));
-        //console.log("Result: "+result);
         expression = expression.slice(j+2);
-        //console.log(expression);
         expression.unshift(result); 
-        //console.log(expression);
         break;
       } 
     }
@@ -164,23 +158,26 @@ function pushValue(value) {
   }
 }
 
+//Delete the last value in the expression
 function deleteLastValue() {
   actualExpression = actualExpression.substring(0, actualExpression.length-1)
   displayValue(actualExpression);
 }
 
-
+//Delete the content of display and the actual expression
 function clearDisplay() {
   let display = document.getElementById("display");
   display.textContent = "";
   actualExpression = "";
 }
 
+//Initialize all buttons with their respective functions
 const buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
   button.addEventListener('click', () => {
     pushValue(button.value);
   });
 });
+
 
 displayValue(actualExpression);
