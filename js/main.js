@@ -152,13 +152,23 @@ function displayValue(value) {
 
 //Aggregate value to the expression
 function pushValue(value) {
-  if (value != "=") {
+  if (value == "=") {
+    resolve(actualExpression);
+  } else if (value == "c") {
+    clearDisplay();
+  } else if (value == "b") {
+    deleteLastValue();
+  } else {
     actualExpression += value;
     displayValue(actualExpression);
-  } else {
-    resolve(actualExpression);
   }
 }
+
+function deleteLastValue() {
+  actualExpression = actualExpression.substring(0, actualExpression.length-1)
+  displayValue(actualExpression);
+}
+
 
 function clearDisplay() {
   let display = document.getElementById("display");
@@ -168,13 +178,9 @@ function clearDisplay() {
 
 const buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
-  if (button.id != "clear") {
-    button.addEventListener('click', () => {
-        pushValue(button.value);
-      });
-  } else {
-    button.addEventListener('click', () => {clearDisplay()});
-  }
+  button.addEventListener('click', () => {
+    pushValue(button.value);
+  });
 });
 
 displayValue(actualExpression);
