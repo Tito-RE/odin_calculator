@@ -2,16 +2,28 @@
   display: flex;
 }
 
-.item {
-  background: rgb(0, 0, 0);
-  color: white;
+.item,
+.equal {
   border: 2px solid rgba(255, 255, 255, 0.156);
+  color: white;
   flex: 1;
+  font-size: x-large;
   padding: 4px;
   text-align: center;
-  font-size: x-large;
 }
 
+.item {
+  background: rgb(0, 0, 0);
+}
+
+.delete {
+  background: red;  
+}
+
+.equal {
+  background: green;
+}
+  
 #display {
   background: rgb(0, 0, 0);
   color: white;
